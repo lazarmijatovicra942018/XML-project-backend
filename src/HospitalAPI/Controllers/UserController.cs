@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AirplaneTicketingAPI.Controllers
 {
+    [ApiController]
+    [Route("api/[controller]")]
     public class UserController : ControllerBase
     {
      
