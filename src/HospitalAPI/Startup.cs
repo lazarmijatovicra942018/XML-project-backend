@@ -26,13 +26,26 @@ namespace HospitalAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            /*
             services.AddDbContext<HospitalDbContext>(options =>
             options.UseNpgsql(Configuration.GetConnectionString("HospitalDb")));
+            */
+
+            // dodavanje 
 
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IGenericMapper<User, UserDTO>, UserMapper>();
+          //W  services.AddControllers();
+
+            //flight
+
+            services.AddScoped<IFlightRepository, FlightRepository>();
+            services.AddScoped<IFlightService, FlightService>();
+            services.AddScoped<IGenericMapper<Flight, FlightDTO>, FlightMapper>();
+  
             services.AddControllers();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "GraphicalEditor", Version = "v1" });
