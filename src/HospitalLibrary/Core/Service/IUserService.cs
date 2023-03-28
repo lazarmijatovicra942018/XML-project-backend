@@ -10,6 +10,7 @@ namespace AirplaneTicketingLibrary.Core.Service
     public interface IUserService
     {
         IEnumerable<User> GetAll();
-  
+        public void Create(User user);
+        public User GetById(int id);
     }
 }
