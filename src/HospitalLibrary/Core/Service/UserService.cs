@@ -1,21 +1,31 @@
 ﻿using AirplaneTicketingLibrary.Core.Model;
 using AirplaneTicketingLibrary.Core.Repository;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AirplaneTicketingLibrary.Core.Service
 {
     public class UserService : IUserService
     {
     
-    private readonly IUserRepository _userRepository;
-        
+        private readonly IUserRepository _userRepository;
+
+        public UserService(IUserRepository repository)
+        {
+            _userRepository = repository;
+        }
+
         public IEnumerable<User> GetAll()
         {
             return _userRepository.GetAll();
-        } 
+        }
+
+        public void Create(User user)
+        {
+            _userRepository.Create(user);
+        }
+        public User GetById(int id)
+        {
+            return _userRepository.GetById(id);
+        }
     }
 }

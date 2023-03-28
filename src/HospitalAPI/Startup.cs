@@ -1,3 +1,8 @@
+using AirplaneTicketingAPI.DTO;
+using AirplaneTicketingAPI.Mappers;
+using AirplaneTicketingLibrary.Core.Model;
+using AirplaneTicketingLibrary.Core.Repository;
+using AirplaneTicketingLibrary.Core.Service;
 using HospitalLibrary.Settings;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -24,6 +29,9 @@ namespace HospitalAPI
             services.AddDbContext<HospitalDbContext>(options =>
             options.UseNpgsql(Configuration.GetConnectionString("HospitalDb")));
 
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IGenericMapper<User, UserDTO>, UserMapper>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
