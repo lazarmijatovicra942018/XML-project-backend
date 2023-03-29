@@ -34,7 +34,7 @@ namespace AirplaneTicketingLibrary.Core.Repository
             _flights.DeleteOne(filter);
         }
 
-        public void DeleteById(int id)
+        public void DeleteById(string id)
         {
             var filter = Builders<Flight>.Filter.Eq(u => u.Id, id);
             _flights.DeleteOne(filter);
@@ -46,7 +46,7 @@ namespace AirplaneTicketingLibrary.Core.Repository
             return _flights.Find(_ => true).ToList();
         }
 
-        public Flight GetById(int id)
+        public Flight GetById(string id)
         {
             var filter = Builders<Flight>.Filter.Eq(u => u.Id, id);
             var flight = _flights.Find(filter).FirstOrDefault();

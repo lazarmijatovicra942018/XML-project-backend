@@ -12,8 +12,8 @@ namespace AirplaneTicketingLibrary.Core.Model
     {
 
         [BsonId]
-   //     [BsonRepresentation(BsonType.ObjectId)]
-        public int Id { get; set; }
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string? Id { get; set; }
 
         public string Deaprture;
 
