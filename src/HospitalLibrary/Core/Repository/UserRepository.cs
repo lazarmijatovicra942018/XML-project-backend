@@ -38,7 +38,9 @@ namespace AirplaneTicketingLibrary.Core.Repository
         {
             var filter = Builders<User>.Filter.Eq(u => u.Id, id);
             var user = _users.Find(filter).FirstOrDefault();
-            if(user == null)
+            
+
+            if(user != null)
             {
                 return user;
             }
