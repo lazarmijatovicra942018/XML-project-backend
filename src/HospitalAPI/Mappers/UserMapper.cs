@@ -12,6 +12,7 @@ namespace AirplaneTicketingAPI.Mappers
             UserDTO userDTO = new UserDTO();
             userDTO.Id = user.Id;
             userDTO.Name = user.Name;
+            userDTO.LastName = user.LastName;
             userDTO.Email = user.Email;
             userDTO.Password = user.Password;
             userDTO.Username = user.Username;
@@ -42,7 +43,8 @@ namespace AirplaneTicketingAPI.Mappers
                 UserDTO userDTO = new UserDTO();
                 userDTO.Id = user.Id;
                 userDTO.Name = user.Name;
-                userDTO.Email = user.Email;
+                userDTO.LastName = user.LastName;
+                userDTO.Email = user.Email; 
                 userDTO.Password = user.Password;
                 userDTO.Username = user.Username;
                 userDTO.PlaceOfLiving = user.PlaceOfLiving;
@@ -62,8 +64,8 @@ namespace AirplaneTicketingAPI.Mappers
         public User ToModel(UserDTO userDTO)
         {
             User user = new User();
-            user.Id = userDTO.Id;
             user.Name = userDTO.Name;
+            user.LastName = userDTO.LastName;
             user.Email = userDTO.Email;
             user.Password = userDTO.Password;
             user.Username = userDTO.Username;
@@ -87,8 +89,8 @@ namespace AirplaneTicketingAPI.Mappers
             foreach(var userDTO in userDTOs)
             {
                 User user = new User();
-                user.Id = userDTO.Id;
                 user.Name = userDTO.Name;
+                user.LastName = userDTO.LastName;
                 user.Email = userDTO.Email;
                 user.Password = userDTO.Password;
                 user.Username = userDTO.Username;

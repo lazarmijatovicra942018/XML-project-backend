@@ -1,6 +1,6 @@
 ﻿using AirplaneTicketingLibrary.Core.Model;
-using MongoDB.Bson;
 using MongoDB.Driver;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -14,7 +14,7 @@ namespace AirplaneTicketingLibrary.Core.Repository
         {
             var client = new MongoClient("mongodb://localhost:27017");
             var mongoDatabase = client.GetDatabase("mydatabase");
-            _users = mongoDatabase.GetCollection<User>("mycollection");
+            _users = mongoDatabase.GetCollection<User>("myusers");
         }
 
         public IEnumerable<User> GetAll()
@@ -23,15 +23,59 @@ namespace AirplaneTicketingLibrary.Core.Repository
         }
 
         public void Create(User user)
-        {
-            _users.InsertOne(user);
+        {    
+            if(IsUsernameExist(user.Username) == false)
+            {
+                _users.InsertOne(user);
+            }
+            else
+            {
+                return;
+            }     
         } 
 
-        public User GetById(int id)
+        public User GetById(String id)
         {
-            var filter = Builders<User>.Filter.Eq(u => u.Id, id); 
+            var filter = Builders<User>.Filter.Eq(u => u.Id, id);
             var user = _users.Find(filter).FirstOrDefault();
-            return user;
+            if(user == null)
+            {
+                return user;
+            }
+            return null;
+        }
+
+        public User GetByUsername(String username)
+        {
+            var filter = Builders<User>.Filter.Eq(u => u.Username, username);
+            var user = _users.Find(filter).FirstOrDefault();
+            if (user != null)
+            {
+                return user;
+            }
+            return null;
+        }
+
+        public Boolean IsUsernameExist(String username)
+        {
+            var filter = Builders<User>.Filter.Eq(u => u.Username, username);
+            var user = _users.Find(filter).FirstOrDefault();
+            if(user != null)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public Boolean IsEmailExist(String email)
+        {
+            var filter = Builders<User>.Filter.Eq(u => u.Email, email);
+            var user = _users.Find(filter).FirstOrDefault();
+            if (user != null)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

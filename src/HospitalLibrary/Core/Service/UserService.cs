@@ -1,5 +1,6 @@
 ﻿using AirplaneTicketingLibrary.Core.Model;
 using AirplaneTicketingLibrary.Core.Repository;
+using System;
 using System.Collections.Generic;
 
 namespace AirplaneTicketingLibrary.Core.Service
@@ -23,7 +24,7 @@ namespace AirplaneTicketingLibrary.Core.Service
         {
             _userRepository.Create(user);
         }
-        public User GetById(int id)
+        public User GetById(string id)
         {
             return _userRepository.GetById(id);
         }
