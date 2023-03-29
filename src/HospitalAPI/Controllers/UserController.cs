@@ -1,9 +1,11 @@
 ﻿using AirplaneTicketingAPI.DTO;
 using AirplaneTicketingAPI.Mappers;
 using AirplaneTicketingLibrary.Core.Model;
+using AirplaneTicketingLibrary.Core.Repository;
 using AirplaneTicketingLibrary.Core.Service;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
+
 
 namespace AirplaneTicketingAPI.Controllers
 {
@@ -13,11 +15,13 @@ namespace AirplaneTicketingAPI.Controllers
     {
      
         private readonly IUserService _userService;
+        private readonly IUserRepository _userRepository;
         private readonly IGenericMapper<User, UserDTO> _mapper;
 
-        public UserController(IUserService userService, IGenericMapper<User, UserDTO> userMapper)
+        public UserController(IUserRepository userRepository,IUserService userService, IGenericMapper<User, UserDTO> userMapper)
         {
             _userService = userService;
+            _userRepository= userRepository;
             _mapper = userMapper;
         }
 
@@ -28,7 +32,7 @@ namespace AirplaneTicketingAPI.Controllers
         }
 
         [HttpGet("{id}")]
-        public ActionResult GetById(int id)
+        public ActionResult GetById(string id)
         {
             return Ok(_mapper.ToDTO(_userService.GetById(id)));
         }
@@ -36,14 +40,14 @@ namespace AirplaneTicketingAPI.Controllers
         [HttpPost]
         public ActionResult Create(UserDTO userDTO)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
             User user = _mapper.ToModel(userDTO);
-            _userService.Create(user);
-            return CreatedAtAction("GetById", new { id = user.Id }, user);
+            
+            if (_userRepository.IsUsernameExist(userDTO.Username) == false && _userRepository.IsEmailExist(userDTO.Email) == false)
+            {
+                _userService.Create(user);
+                return CreatedAtAction("GetById", new { id = user.Id }, user);
+            }
+            return BadRequest();
         }
     }
 }

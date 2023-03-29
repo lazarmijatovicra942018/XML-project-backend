@@ -1,4 +1,5 @@
 ﻿using AirplaneTicketingLibrary.Core.Model;
+using System;
 using System.Collections.Generic;
 
 namespace AirplaneTicketingLibrary.Core.Repository
@@ -7,6 +8,9 @@ namespace AirplaneTicketingLibrary.Core.Repository
     {
         IEnumerable<User> GetAll();
         void Create(User user);
-        public User GetById(int id);
+        public User GetById(string id);
+        public Boolean IsUsernameExist(String username);
+        public User GetByUsername(String username);
+        public Boolean IsEmailExist(String email);
     }
 }
