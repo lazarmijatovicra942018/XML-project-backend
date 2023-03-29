@@ -30,7 +30,7 @@ namespace AirplaneTicketingLibrary.Core.Service
             _flightRepository.Delete(flight);
         }
 
-        public void DeleteById(int id)
+        public void DeleteById(string id)
         {
             _flightRepository.DeleteById(id);
         }
@@ -40,7 +40,7 @@ namespace AirplaneTicketingLibrary.Core.Service
             return _flightRepository.GetAll();
         }
 
-        public Flight GetById(int id)
+        public Flight GetById(string id)
         {
             return _flightRepository.GetById(id);
         }

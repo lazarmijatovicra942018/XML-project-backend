@@ -12,12 +12,12 @@ namespace AirplaneTicketingLibrary.Core.Repository
 
         IEnumerable<Flight> GetAll();
         void Create(Flight flight);
-        public Flight GetById(int id);
+        public Flight GetById(string id);
 
         void Update(Flight flight);
         void Delete(Flight flight);
 
-        void DeleteById(int id);
+        void DeleteById(string id);
 
     }
 }

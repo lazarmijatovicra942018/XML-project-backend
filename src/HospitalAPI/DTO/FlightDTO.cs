@@ -8,7 +8,7 @@ namespace AirplaneTicketingAPI.DTO
     public class FlightDTO
     {
 
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         public string Departure { get; set; }
 

@@ -37,7 +37,7 @@ namespace AirplaneTicketingAPI.Controllers
 
 
         [HttpGet("{id}")]
-        public ActionResult GetById(int id)
+        public ActionResult GetById(string id)
         {
             return Ok(_mapper.ToDTO(_flightService.GetById(id)));
         }
@@ -58,7 +58,7 @@ namespace AirplaneTicketingAPI.Controllers
 
         // PUT api/flight/2
         [HttpPut("{id}")]
-        public ActionResult Update(int id, Flight flight)
+        public ActionResult Update(string id, Flight flight)
         {
             if (!ModelState.IsValid)
             {
@@ -85,7 +85,7 @@ namespace AirplaneTicketingAPI.Controllers
 
         // DELETE api/flight/2
         [HttpDelete("{id}")]
-        public ActionResult Delete(int id)
+        public ActionResult Delete(string id)
         {
             var flight = _flightService.GetById(id);
             if (flight == null)
