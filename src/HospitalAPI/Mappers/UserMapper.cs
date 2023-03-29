@@ -25,6 +25,12 @@ namespace AirplaneTicketingAPI.Mappers
             {
                 userDTO.Role = "Guest";
             }
+            if (user.Role == Role.Admin)
+            {
+                userDTO.Role = "Admin";
+            }
+
+
             return userDTO;
         }
 

@@ -10,5 +10,6 @@ namespace AirplaneTicketingLibrary.Core.Enum
     {
         Guest,
         Host,
+        Admin
     }
 }
