@@ -12,5 +12,6 @@ namespace AirplaneTicketingLibrary.Core.Repository
         public Boolean IsUsernameExist(String username);
         public User GetByUsername(String username);
         public Boolean IsEmailExist(String email);
+        public User Login(string username, string password);
     }
 }

@@ -3,7 +3,9 @@ using AirplaneTicketingAPI.Mappers;
 using AirplaneTicketingLibrary.Core.Model;
 using AirplaneTicketingLibrary.Core.Repository;
 using AirplaneTicketingLibrary.Core.Service;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Linq;
 
 
@@ -41,13 +43,41 @@ namespace AirplaneTicketingAPI.Controllers
         public ActionResult Create(UserDTO userDTO)
         {
             User user = _mapper.ToModel(userDTO);
-            
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
             if (_userRepository.IsUsernameExist(userDTO.Username) == false && _userRepository.IsEmailExist(userDTO.Email) == false)
             {
                 _userService.Create(user);
                 return CreatedAtAction("GetById", new { id = user.Id }, user);
             }
             return BadRequest();
+        }
+
+        [AllowAnonymous]
+        [HttpPost("login")]
+        public IActionResult Login([FromBody] UserDTO userLogin)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            try
+            {
+                var token = _userService.Login(userLogin.Username, userLogin.Password);
+
+                if (token == null)
+                    return NotFound("User not found");
+
+                return Ok(Content(token.AccessToken, "application/json"));
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
     }
 }
