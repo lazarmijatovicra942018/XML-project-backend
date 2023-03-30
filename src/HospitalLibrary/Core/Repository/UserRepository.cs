@@ -3,6 +3,7 @@ using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 
 namespace AirplaneTicketingLibrary.Core.Repository
 {
@@ -78,6 +79,38 @@ namespace AirplaneTicketingLibrary.Core.Repository
                 return true;
             }
             return false;
+        }
+
+        public User Login(string username, string password)
+        {
+            
+            foreach (User user in GetAll())
+            {
+                if (user.Email.Equals(username) && VerifyPassword(password,user.Password) == true)
+                {
+                    return user;
+                }
+            }
+            return null;
+        }
+
+        public static bool VerifyPassword(string password, string hashedPassword)
+        {
+            // Convert the password string to a byte array
+            byte[] passwordBytes = System.Text.Encoding.UTF8.GetBytes(password);
+
+            // Create a new instance of the SHA256 algorithm
+            using (SHA256 sha256Hash = SHA256.Create())
+            {
+                // Compute the hash value of the password byte array
+                byte[] hashBytes = sha256Hash.ComputeHash(passwordBytes);
+
+                // Convert the hash byte array to a string representation
+                string hashString = Convert.ToBase64String(hashBytes);
+
+                // Compare the newly hashed password with the existing hashed password
+                return hashString.Equals(hashedPassword);
+            }
         }
     }
 }

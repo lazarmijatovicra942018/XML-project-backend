@@ -12,5 +12,6 @@ namespace AirplaneTicketingLibrary.Core.Service
         IEnumerable<User> GetAll();
         public void Create(User user);
         public User GetById(string id);
+        public AuthenticationToken Login(string username, string password);
     }
 }
