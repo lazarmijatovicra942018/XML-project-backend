@@ -86,7 +86,7 @@ namespace AirplaneTicketingLibrary.Core.Repository
             
             foreach (User user in GetAll())
             {
-                if (user.Email.Equals(username) && VerifyPassword(password,user.Password) == true)
+                if (user.Username.Equals(username) && VerifyPassword(password,user.Password) == true)
                 {
                     return user;
                 }
