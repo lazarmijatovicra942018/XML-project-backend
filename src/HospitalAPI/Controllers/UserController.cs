@@ -67,7 +67,7 @@ namespace AirplaneTicketingAPI.Controllers
             }
             try
             {
-                var token = _userService.Login(userLogin.Username, userLogin.Password);
+                var token = _userService.Login(userLogin.Email, userLogin.Password);
 
                 if (token == null)
                     return NotFound("User not found");

@@ -81,12 +81,12 @@ namespace AirplaneTicketingLibrary.Core.Repository
             return false;
         }
 
-        public User Login(string username, string password)
+        public User Login(string email, string password)
         {
             
             foreach (User user in GetAll())
             {
-                if (user.Username.Equals(username) && VerifyPassword(password,user.Password) == true)
+                if (user.Email.Equals(email) && VerifyPassword(password,user.Password) == true)
                 {
                     return user;
                 }
