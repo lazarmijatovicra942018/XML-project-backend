@@ -17,13 +17,13 @@ namespace AirplaneTicketingAPI.Mappers
             userDTO.Password = user.Password;
             userDTO.Username = user.Username;
             userDTO.PlaceOfLiving = user.PlaceOfLiving;
-            if (user.Role == Role.Host)
+            if (user.Role == Role.UnauthenticatedUser)
             {
-                userDTO.Role = "Host";
+                userDTO.Role = "UnauthenticatedUser";
             }
-            if (user.Role == Role.Guest)
+            if (user.Role == Role.OrdinaryUser)
             {
-                userDTO.Role = "Guest";
+                userDTO.Role = "OrdinaryUser";
             }
             if (user.Role == Role.Admin)
             {
@@ -48,13 +48,17 @@ namespace AirplaneTicketingAPI.Mappers
                 userDTO.Password = user.Password;
                 userDTO.Username = user.Username;
                 userDTO.PlaceOfLiving = user.PlaceOfLiving;
-                if (user.Role == Role.Host)
+                if (user.Role == Role.UnauthenticatedUser)
                 {
-                    userDTO.Role = "Host";
+                    userDTO.Role = "UnauthenticatedUser";
                 }
-                if (user.Role == Role.Guest)
+                if (user.Role == Role.OrdinaryUser)
                 {
-                    userDTO.Role = "Guest";
+                    userDTO.Role = "OrdinaryUser";
+                }
+                if (user.Role == Role.Admin)
+                {
+                    userDTO.Role = "Admin";
                 }
                 userDTOs.Add(userDTO);
             }
@@ -70,15 +74,19 @@ namespace AirplaneTicketingAPI.Mappers
             user.Password = userDTO.Password;
             user.Username = userDTO.Username;
             user.PlaceOfLiving = userDTO.PlaceOfLiving;
-            if (userDTO.Role.Equals("Host"))
+            if (userDTO.Role.Equals("UnauthenticatedUser"))
             {
-                user.Role = Role.Host;
+                user.Role = Role.UnauthenticatedUser;
             }
-            if(userDTO.Role.Equals("Guest"))
+            if(userDTO.Role.Equals("OrdinaryUser"))
             {
-                user.Role = Role.Guest;
+                user.Role = Role.OrdinaryUser;
             }
-            
+            if (userDTO.Role.Equals("Admin"))
+            {
+                user.Role = Role.Admin;
+            }
+
             return user;
         }
 
@@ -95,13 +103,17 @@ namespace AirplaneTicketingAPI.Mappers
                 user.Password = userDTO.Password;
                 user.Username = userDTO.Username;
                 user.PlaceOfLiving = userDTO.PlaceOfLiving;
-                if (userDTO.Role.Equals("Host"))
+                if (userDTO.Role.Equals("UnauthenticatedUser"))
                 {
-                    user.Role = Role.Host;
+                    user.Role = Role.UnauthenticatedUser;
                 }
-                if (userDTO.Role.Equals("Guest"))
+                if (userDTO.Role.Equals("OrdinaryUser"))
                 {
-                    user.Role = Role.Guest;
+                    user.Role = Role.OrdinaryUser;
+                }
+                if (userDTO.Role.Equals("Admin"))
+                {
+                    user.Role = Role.Admin;
                 }
                 users.Add(user);
             }

@@ -135,6 +135,7 @@ namespace AirplaneTicketingLibrary.Core.Repository
             string Role = jwtToken.Claims.First(claim => claim.Type == "Role").Value;
 
             User Iam = new User();
+            
             Iam = GetById(Id);
             
             return Iam;
