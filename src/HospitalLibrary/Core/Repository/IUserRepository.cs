@@ -13,5 +13,7 @@ namespace AirplaneTicketingLibrary.Core.Repository
         public User GetByUsername(String username);
         public Boolean IsEmailExist(String email);
         public User Login(string username, string password);
+        public User GetByEmail(String email);
+        public User WhoIAm(string token);
     }
 }
