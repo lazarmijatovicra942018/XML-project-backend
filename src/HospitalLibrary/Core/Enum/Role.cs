@@ -8,8 +8,12 @@ namespace AirplaneTicketingLibrary.Core.Enum
 {
     public enum Role
     {
+        UnauthenticatedUser,
+        OrdinaryUser,
+        Admin,
+        /*
         Guest,
-        Host,
-        Admin
+        Host
+        */
     }
 }
