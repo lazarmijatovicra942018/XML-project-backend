@@ -39,6 +39,12 @@ namespace AirplaneTicketingAPI.Controllers
             return Ok(_mapper.ToDTO(_userService.GetById(id)));
         }
 
+        [HttpGet("find/{email}")]
+        public ActionResult GetByEmail(string email)
+        {
+            return Ok(_mapper.ToDTO(_userService.GetByEmail(email)));
+        }
+
         [HttpPost]
         public ActionResult Create(UserDTO userDTO)
         {
@@ -67,7 +73,7 @@ namespace AirplaneTicketingAPI.Controllers
             }
             try
             {
-                var token = _userService.Login(userLogin.Username, userLogin.Password);
+                var token = _userService.Login(userLogin.Email, userLogin.Password);
 
                 if (token == null)
                     return NotFound("User not found");
@@ -79,5 +85,12 @@ namespace AirplaneTicketingAPI.Controllers
                 return BadRequest(e.Message);
             }
         }
+        
+        [HttpGet("whoiam/{token}")]
+        public ActionResult GetByToken(string token)
+        {
+            return Ok(_userService.GetByEmail(token));
+        }
+
     }
 }

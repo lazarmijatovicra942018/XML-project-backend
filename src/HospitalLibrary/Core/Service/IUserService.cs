@@ -13,5 +13,7 @@ namespace AirplaneTicketingLibrary.Core.Service
         public void Create(User user);
         public User GetById(string id);
         public AuthenticationToken Login(string username, string password);
+        public User GetByEmail(String email);
+        public User WhoIAm(string token);
     }
 }

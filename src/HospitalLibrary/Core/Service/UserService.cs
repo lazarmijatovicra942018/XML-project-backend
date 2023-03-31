@@ -33,6 +33,11 @@ namespace AirplaneTicketingLibrary.Core.Service
             return _userRepository.GetById(id);
         }
 
+        public User GetByEmail(String email)
+        {
+            return _userRepository.GetByEmail(email);
+        }
+
         public AuthenticationToken Login(string username, string password)
         {
             var user = _userRepository.Login(username, password);
@@ -56,6 +61,11 @@ namespace AirplaneTicketingLibrary.Core.Service
 
                 return hashString;
             }
+        }
+
+        public User WhoIAm(string token)
+        {
+            return _userRepository.WhoIAm(token);
         }
     }
 }

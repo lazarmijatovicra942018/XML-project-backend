@@ -2,6 +2,7 @@
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Cryptography;
 
@@ -59,6 +60,17 @@ namespace AirplaneTicketingLibrary.Core.Repository
             return null;
         }
 
+        public User GetByEmail(String email)
+        {
+            var filter = Builders<User>.Filter.Eq(u => u.Email, email);
+            var user = _users.Find(filter).FirstOrDefault();
+            if (user != null)
+            {
+                return user;
+            }
+            return null;
+        }
+
         public Boolean IsUsernameExist(String username)
         {
             var filter = Builders<User>.Filter.Eq(u => u.Username, username);
@@ -81,12 +93,12 @@ namespace AirplaneTicketingLibrary.Core.Repository
             return false;
         }
 
-        public User Login(string username, string password)
+        public User Login(string email, string password)
         {
             
             foreach (User user in GetAll())
             {
-                if (user.Username.Equals(username) && VerifyPassword(password,user.Password) == true)
+                if (user.Email.Equals(email) && VerifyPassword(password,user.Password) == true)
                 {
                     return user;
                 }
@@ -112,5 +124,24 @@ namespace AirplaneTicketingLibrary.Core.Repository
                 return hashString.Equals(hashedPassword);
             }
         }
-    }
+
+        public User WhoIAm(string token)
+        {
+            // Decode the token
+            var jwtToken = new JwtSecurityTokenHandler().ReadJwtToken(token);
+
+            // Extract information from the token
+            string Id = jwtToken.Claims.First(claim => claim.Type == "Id").Value;
+            string Role = jwtToken.Claims.First(claim => claim.Type == "Role").Value;
+
+            User Iam = new User();
+            Iam = GetById(Id);
+            
+            return Iam;
+        }
+
+
+
+
+    }  
 }
