@@ -1,4 +1,4 @@
-# xml-backend
+# XML-project-backend
 
 1. Instalirati MongoDB
 2. Nazvati bazu mydatabase 
