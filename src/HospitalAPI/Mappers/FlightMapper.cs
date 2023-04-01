@@ -14,12 +14,12 @@ namespace AirplaneTicketingAPI.Mappers
             FlightDTO flightDTO = new FlightDTO();
 
             flightDTO.Id = flight.Id;
-            flightDTO.Departure = flight.Deaprture;
+            flightDTO.Departure = flight.Departure;
             flightDTO.Destination = flight.Destination;
             flightDTO.Price = flight.Price;
             flightDTO.Capacity = flight.Capacity;
             flightDTO.DepartureDate = flight.DepartureDate;
-            flightDTO.Occupancy = flight.Occupacy;
+            flightDTO.Occupancy = flight.Occupancy;
 
 
             return flightDTO;
@@ -35,12 +35,12 @@ namespace AirplaneTicketingAPI.Mappers
                 FlightDTO flightDTO = new FlightDTO();
 
                 flightDTO.Id = flight.Id;
-                flightDTO.Departure = flight.Deaprture;
+                flightDTO.Departure = flight.Departure;
                 flightDTO.Destination = flight.Destination;
                 flightDTO.Price = flight.Price;
                 flightDTO.Capacity = flight.Capacity;
                 flightDTO.DepartureDate = flight.DepartureDate;
-                flightDTO.Occupancy = flight.Occupacy;
+                flightDTO.Occupancy = flight.Occupancy;
 
                 flightDTOs.Add(flightDTO);
 
@@ -56,12 +56,12 @@ namespace AirplaneTicketingAPI.Mappers
             Flight flight = new Flight();
 
             flight.Id = flightDTO.Id;
-            flight.Deaprture = flightDTO.Departure;
+            flight.Departure = flightDTO.Departure;
             flight.Destination = flightDTO.Destination;
             flight.Price = flightDTO.Price;
             flight.Capacity = flightDTO.Capacity;
             flight.DepartureDate = flightDTO.DepartureDate;
-            flight.Occupacy = flightDTO.Occupancy;
+            flight.Occupancy = flightDTO.Occupancy;
 
 
             return flight;
@@ -80,12 +80,12 @@ namespace AirplaneTicketingAPI.Mappers
 
                 
                 flight.Id = flightDTO.Id;
-                flight.Deaprture = flightDTO.Departure;
+                flight.Departure = flightDTO.Departure;
                 flight.Destination = flightDTO.Destination;
                 flight.Price = flightDTO.Price;
                 flight.Capacity = flightDTO.Capacity;
                 flight.DepartureDate = flightDTO.DepartureDate;
-                flight.Occupacy = flightDTO.Occupancy;
+                flight.Occupancy = flightDTO.Occupancy;
 
                 flights.Add(flight);
 

@@ -14,17 +14,11 @@ namespace AirplaneTicketingLibrary.Core.Model
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         public string? Id { get; set; }
-
-        public string Deaprture;
-
-        public string Destination;
-
-        public float Price;
-
-        public int Capacity;
-
-        public int Occupacy;
-
+        public string Departure { get; set; }
+        public string Destination { get; set; }
+        public float Price { get; set; }
+        public int Capacity { get; set; }
+        public int Occupancy { get; set; }
         public DateTime DepartureDate { get; set; }
 
 

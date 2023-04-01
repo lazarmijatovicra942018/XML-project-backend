@@ -49,5 +49,6 @@ namespace AirplaneTicketingLibrary.Core.Service
         {
             _flightRepository.Update(flight);
         }
+
     }
 }
