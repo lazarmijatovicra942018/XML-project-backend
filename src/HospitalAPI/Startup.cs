@@ -37,11 +37,17 @@ namespace HospitalAPI
           //W  services.AddControllers();
 
             //flight
-
             services.AddScoped<IFlightRepository, FlightRepository>();
             services.AddScoped<IFlightService, FlightService>();
             services.AddScoped<IGenericMapper<Flight, FlightDTO>, FlightMapper>();
-  
+
+            //tickets
+            
+            services.AddScoped<ITicketRepository, TicketRepository>();
+            services.AddScoped<ITicketService, TicketService>();
+            services.AddScoped<IGenericMapper<Ticket, TicketDTO>, TicketMapper>();
+            
+
             services.AddControllers();
 
             services.AddSwaggerGen(c =>
