@@ -16,9 +16,8 @@ namespace AirplaneTicketingLibrary.Core.Repository
         public FlightRepository()
         {
 
-            var client = new MongoClient("mongodb://localhost:27017");
+            var client = new MongoClient("mongodb://root:password@mongo:27017");
             var mongoDatabase = client.GetDatabase("mydatabase");
-         
             _flights = mongoDatabase.GetCollection<Flight>("flights");
 
         }
