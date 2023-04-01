@@ -14,7 +14,7 @@ namespace AirplaneTicketingLibrary.Core.Repository
 
         public UserRepository()
         {
-            var client = new MongoClient("mongodb://localhost:27017");
+            var client = new MongoClient("mongodb://root:password@mongo:27017");
             var mongoDatabase = client.GetDatabase("mydatabase");
             _users = mongoDatabase.GetCollection<User>("myusers");
         }
