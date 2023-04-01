@@ -9,18 +9,11 @@ namespace AirplaneTicketingLibrary.Core.Service
 {
     public interface IFlightService
     {
-
-
         IEnumerable<Flight> GetAll();
         void Create(Flight flight);
         public Flight GetById(string id);
-
         void Update(Flight flight);
         void Delete(Flight flight);
-
         void DeleteById(string id);
-
-        public void UpdateFlightbuyTicket(string idFlight, int quantityTickets, Flight flight);
-
     }
 }
