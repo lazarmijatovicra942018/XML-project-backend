@@ -19,5 +19,8 @@ namespace AirplaneTicketingLibrary.Core.Service
         void Delete(Flight flight);
 
         void DeleteById(string id);
+
+        public void UpdateFlightbuyTicket(string idFlight, int quantityTickets, Flight flight);
+
     }
 }

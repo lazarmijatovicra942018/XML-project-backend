@@ -82,7 +82,6 @@ namespace AirplaneTicketingAPI.Controllers
             return Ok(flight);
         }
 
-
         // DELETE api/flight/2
         [HttpDelete("{id}")]
         public ActionResult Delete(string id)
