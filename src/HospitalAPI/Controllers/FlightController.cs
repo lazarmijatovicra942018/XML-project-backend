@@ -3,6 +3,8 @@ using AirplaneTicketingAPI.Mappers;
 using AirplaneTicketingLibrary.Core.Model;
 using AirplaneTicketingLibrary.Core.Service;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 
 
@@ -28,7 +30,7 @@ namespace AirplaneTicketingAPI.Controllers
 
         [HttpGet]
 
-      
+
         [HttpGet]
         public ActionResult GetAllFlieghts()
         {
@@ -96,8 +98,13 @@ namespace AirplaneTicketingAPI.Controllers
             return NoContent();
         }
 
+        [HttpGet("{searchDate}/{searchDeparture}/{searchDestination}/{searchPassinger}")]
+        public ActionResult GetAllExaminationsBySearchReport(DateTime searchDate, string searchDeparture, string searchDestination, int searchPassinger)
+        {
 
+            return Ok(_flightService.GetAllFlightsBySearch(searchDate, searchDeparture, searchDestination, searchPassinger));
+
+        }
 
     }
-
 }

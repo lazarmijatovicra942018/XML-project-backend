@@ -15,5 +15,6 @@ namespace AirplaneTicketingLibrary.Core.Service
         void Update(Flight flight);
         void Delete(Flight flight);
         void DeleteById(string id);
+        List<Flight> GetAllFlightsBySearch(DateTime searchDate, string searchDeparture, string searchDestination, int searchPassinger);
     }
 }
