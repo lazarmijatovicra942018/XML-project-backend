@@ -21,7 +21,9 @@ namespace AirplaneTicketingLibrary.Core.Model
         public int Occupancy { get; set; }
         public DateTime DepartureDate { get; set; }
 
-
-
+        public float GetTotalPrice(int searchPassinger)
+        {
+            return Price * searchPassinger;
+        }
     }
 }

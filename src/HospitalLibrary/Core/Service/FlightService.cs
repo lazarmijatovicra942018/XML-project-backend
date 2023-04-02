@@ -40,6 +40,26 @@ namespace AirplaneTicketingLibrary.Core.Service
             return _flightRepository.GetAll();
         }
 
+        public List<Flight> GetAllFlightsBySearch(DateTime searchDate, string searchDeparture, string searchDestination, int searchPassinger)
+        {
+            List<Flight> flights = new List<Flight>();
+            foreach(Flight flight in GetAll())
+            {
+                
+               
+
+                DateTime wSearch = new DateTime(searchDate.Year, searchDate.Month, searchDate.Day, 1, 1, 1);
+                DateTime wTime = new DateTime(flight.DepartureDate.Year, flight.DepartureDate.Month, flight.DepartureDate.Day, 1, 1, 1);
+
+
+                if (wSearch == wTime && flight.Departure.Equals(searchDeparture) && flight.Destination.Equals(searchDestination) && flight.Capacity - flight.Occupancy >= searchPassinger)
+                {
+                    flights.Add(flight);
+                }
+            }
+            return flights;
+        }
+
         public Flight GetById(string id)
         {
             return _flightRepository.GetById(id);
